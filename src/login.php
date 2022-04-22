@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$db = unserialize(file_get_contents('accounts.db'));
+$db = unserialize(file_get_contents('db/accounts.db'));
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];

@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged_in'])) {
 }
 
 $AVATAR_PATH = 'images/avatars';
-$db = unserialize(file_get_contents('userdata.db'));
+$db = unserialize(file_get_contents('db/userdata.db'));
 
 $username = $_SESSION['username'];
 $avatar_file = $db[$username]['avatar'];

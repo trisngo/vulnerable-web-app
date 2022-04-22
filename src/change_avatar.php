@@ -5,9 +5,16 @@ if (!isset($_SESSION['logged_in'])) {
     header('Location: /login.php');
 }
 
-$AVATAR_PATH = 'images/avatars';
-$db = unserialize(file_get_contents('userdata.db'));
+if (isset($_POST['avatar'])) {
+    $db = unserialize(file_get_contents('db/userdata.db'));
+    $username = $_SESSION['username'];
+    $db[$username]['avatar'] = $_POST['avatar'];
 
+    file_put_contents('db/userdata.db', serialize($db));
+    header('Location: /index.php');
+}
+
+$AVATAR_PATH = 'images/avatars';
 $files = scandir($AVATAR_PATH);
 
 foreach ($files as $file_name) {
@@ -20,11 +27,4 @@ foreach ($files as $file_name) {
         </form>';
     }
 }
-
-if (isset($_POST['avatar'])) {
-    $username = $_SESSION['username'];
-    $db[$username]['avatar'] = $_POST['avatar'];
-
-    file_put_contents('userdata.db', serialize($db));
-    header('Location: /index.php');
-}
+?>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$accounts_db = unserialize(file_get_contents('accounts.db'));
-$userdata_db = unserialize(file_get_contents('userdata.db'));
+$accounts_db = unserialize(file_get_contents('db/accounts.db'));
+$userdata_db = unserialize(file_get_contents('db/userdata.db'));
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
@@ -14,8 +14,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     else {
         $accounts_db[$username] = md5($password);
         $userdata_db[$username] = ['avatar' => 'default.jpg'];
-        file_put_contents('accounts.db', serialize($accounts_db));
-        file_put_contents('userdata.db', serialize($userdata_db));
+        file_put_contents('db/accounts.db', serialize($accounts_db));
+        file_put_contents('db/userdata.db', serialize($userdata_db));
         die("Registration completed successfully!");
     }
 }

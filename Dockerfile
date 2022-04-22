@@ -1,8 +1,8 @@
 FROM php:7.3-apache
 
-RUN apt update && apt install libzip-dev zlib1g-dev -y
+RUN apt update # && apt install libzip-dev zlib1g-dev -y
 
-RUN docker-php-ext-install zip
+# RUN docker-php-ext-install zip
 
 RUN mkdir /usr/upload/
 
@@ -17,7 +17,7 @@ COPY ./configs/000-default.conf /var/www/html/000-default.conf
 
 COPY ./src /var/www/html
 
-RUN chown -R root:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 RUN chmod 750 /var/www/html
 
 
