@@ -2,15 +2,12 @@
 session_start();
 
 $accounts_db = unserialize(file_get_contents('accounts.db'));
-$userdata_db == unserialize(file_get_contents('userdata.db'));
+$userdata_db = unserialize(file_get_contents('userdata.db'));
 
-
-// TODO: add admin value to db
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-
     if (isset($accounts_db[$username])) {
             die('Username already exists!');
     }
