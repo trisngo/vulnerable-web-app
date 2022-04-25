@@ -1,0 +1,7 @@
+- login (type juggling)
+- home {
+    - display avatar (display file (from path traversel vuln) as base64)
+    - change avatar
+        + upload from local (file upload vuln)
+        + select from a list (path traversal)
+}
