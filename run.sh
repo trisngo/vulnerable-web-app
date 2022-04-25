@@ -8,4 +8,4 @@ docker rm $DOCKERNAME
 #docker rmi $DOCKERNAME
 docker build -t $DOCKERNAME --file $DOCKERFILE_NAME .
 
-docker run -d -p 127.0.0.1:8080:80 -v ./src/db:/var/www/html/db --name $DOCKERNAME $DOCKERNAME
+docker run -d -p 127.0.0.1:8081:80 -v ./src/db:/var/www/html/db --name $DOCKERNAME $DOCKERNAME
