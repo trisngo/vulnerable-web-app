@@ -4,19 +4,23 @@ session_start();
 $accounts_db = unserialize(file_get_contents('db/accounts.db'));
 $userdata_db = unserialize(file_get_contents('db/userdata.db'));
 
+$AVATAR_PATH = 'images/avatars';
+
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
     if (isset($accounts_db[$username])) {
-            die('Username already exists!');
+		header('Refresh: 2;URL=/register.php');
+        echo "<h5>Username already exists!</h5><br>";
     }
     else {
         $accounts_db[$username] = md5($password);
-        $userdata_db[$username] = ['avatar' => 'default.jpg'];
+        $userdata_db[$username] = ['avatar' => $AVATAR_PATH . '/default.jpg'];
         file_put_contents('db/accounts.db', serialize($accounts_db));
         file_put_contents('db/userdata.db', serialize($userdata_db));
-        die("Registration completed successfully! Please go to a login page to log in!");
+		header('Refresh: 2;URL=/login.php');
+        echo "<h5>Registration completed successfully! Redirecting to log in page...</h5><br>";
     }
 }
 ?>

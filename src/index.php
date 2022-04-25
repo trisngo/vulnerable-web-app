@@ -4,14 +4,12 @@ session_start();
 if (!isset($_SESSION['logged_in'])) {
     header('Location: /login.php');
 }
-$AVATAR_PATH = 'images/avatars';
 $db = unserialize(file_get_contents('db/userdata.db'));
 
 $username = $_SESSION['username'];
 $avatar_file = $db[$username]['avatar'];
 
-// echo 'Your avatar:<br>';
-// echo '<img src="data:image/gif;base64,' . base64_encode(file_get_contents($AVATAR_PATH . '/' . $avatar_file)) . '" width="300" height="300">';
+// TODO: Add note feature
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +50,7 @@ $avatar_file = $db[$username]['avatar'];
             </div>
             <div class="row justify-content-center">
               <form action="change_avatar.php" method="post"> 
-                <?php echo '<img src="data:image/gif;base64,' . base64_encode(file_get_contents($AVATAR_PATH . '/' . $avatar_file)) . '"alt="Avatar image" class="w-50 avatar col-md-6 offset-md-3">'; ?> 
+                <?php echo '<img src="data:image/gif;base64,' . base64_encode(file_get_contents($avatar_file)) . '"alt="Avatar image" class="w-50 avatar col-md-6 offset-md-3">'; ?> 
               </form>
             </div>
             <div class="row justify-content-center">
@@ -62,8 +60,10 @@ $avatar_file = $db[$username]['avatar'];
               </form>
               </div>
               <div class="col-4">
-              <form action="change_avatar.php" method="post">
-                <button class="btn btn-info breezy" type="submit" value="submit" style="margin:0 auto; display:block;">Upload avatar</button>
+              <form action="change_avatar.php" method="post" enctype="multipart/form-data">
+                <input class="btn btn-info breezy" type="file" name="file" style="margin:0 auto; display:block;">
+                <br>
+                <input class="btn btn-info breezy" type="submit" value="Upload avatar" style="margin:0 auto; display:block;">
               </form>
               </div>
             </div>

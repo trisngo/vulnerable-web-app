@@ -13,7 +13,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         header('Location: /index.php');
     }
     else {
-        die('The Username or Password is incorrect!');
+		    header('Refresh: 2;URL=/login.php');
+        echo "<h5>The Username or Password is incorrect!</h5><br>";
     }
 }
 ?>
